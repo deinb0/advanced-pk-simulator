@@ -44,97 +44,56 @@ export default function AdvancedPKSimulator() {
   };
 
   return (
-    <div className="font-sans p-6 bg-gray-50 min-h-screen">
-      <h2 className="text-2xl font-bold mb-6 text-indigo-600">
-        Advanced PK Simulator
-      </h2>
-
-      {/* Input controls */}
-      <div className="mb-8 flex flex-wrap gap-4 items-center">
-        <label className="flex items-center gap-2">
-          Dose (mg):
+    <div style={{ fontFamily: "sans-serif", padding: "20px" }}>
+      <h2>Advanced PK Simulator</h2>
+      <div style={{ marginBottom: "20px" }}>
+        <label>
+          Dose (mg):{" "}
           <input
             type="number"
             value={dose}
             onChange={(e) => setDose(Number(e.target.value))}
-            className="border rounded px-2 py-1 w-20"
           />
-        </label>
-
-        <label className="flex items-center gap-2">
-          Dosing Interval (h):
+        </label>{" "}
+        <label>
+          Dosing Interval (h):{" "}
           <input
             type="number"
             value={interval}
             onChange={(e) => setInterval(Number(e.target.value))}
-            className="border rounded px-2 py-1 w-24"
           />
-        </label>
-
-        <label className="flex items-center gap-2">
-          Half-life (h):
+        </label>{" "}
+        <label>
+          Half-life (h):{" "}
           <input
             type="number"
             value={halfLife}
             onChange={(e) => setHalfLife(Number(e.target.value))}
-            className="border rounded px-2 py-1 w-20"
           />
-        </label>
-
-        <label className="flex items-center gap-2">
-          Duration (h):
+        </label>{" "}
+        <label>
+          Duration (h):{" "}
           <input
             type="number"
             value={duration}
             onChange={(e) => setDuration(Number(e.target.value))}
-            className="border rounded px-2 py-1 w-20"
           />
-        </label>
-
-        <button
-          onClick={downloadPNG}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700"
-        >
-          Download Chart as PNG
-        </button>
+        </label>{" "}
+        <button onClick={downloadPNG}>Download Chart as PNG</button>
       </div>
 
-      {/* Chart */}
-      <div
-        id="chart-container"
-        className="w-full h-96 bg-white rounded-lg shadow p-4"
-      >
+      <div id="chart-container" style={{ width: "100%", height: 400 }}>
         <ResponsiveContainer>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="time"
-              label={{
-                value: "Time (h)",
-                position: "insideBottomRight",
-                offset: -5,
-              }}
-            />
-            <YAxis
-              label={{
-                value: "Concentration",
-                angle: -90,
-                position: "insideLeft",
-              }}
-            />
+            <XAxis dataKey="time" label={{ value: "Time (h)", position: "insideBottomRight", offset: -5 }} />
+            <YAxis label={{ value: "Concentration", angle: -90, position: "insideLeft" }} />
             <Tooltip />
             <Legend />
-            <Line
-              type="monotone"
-              dataKey="concentration"
-              stroke="#4f46e5"
-              strokeWidth={2}
-              dot={false}
-            />
+            <Line type="monotone" dataKey="concentration" stroke="#8884d8" dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
     </div>
   );
 }
-
